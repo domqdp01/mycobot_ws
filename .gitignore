@@ -1,0 +1,17 @@
+build/
+devel/
+log/
+install/
+
+.vscode/
+
+*.db
+*.sqlite
+*.sqlite3
+
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+CMakeLists.txt.user
