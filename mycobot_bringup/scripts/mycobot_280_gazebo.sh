@@ -13,7 +13,7 @@ trap 'cleanup' SIGINT SIGTERM
 echo "Launching Gazebo simulation..."
 ros2 launch mycobot_gazebo mycobot.gazebo.launch.py \
     load_controllers:=true \
-    world_file:=pick_and_place_demo.world \
+    world_file:=pick_and_place.world \
     use_camera:=true \
     use_rviz:=true \
     use_robot_state_pub:=true \

@@ -46,7 +46,7 @@ Simulation allows testing algorithms without hardware, with visualization suppor
 - ROS 2 Jazzy
 - Python 3
 - OpenCV
-- Neural network libraries (PyTorch or TensorFlow)
+- Neural network libraries (TBD)
 
 ### Installation
 1. Clone the repository into your ROS 2 workspace `src` folder:

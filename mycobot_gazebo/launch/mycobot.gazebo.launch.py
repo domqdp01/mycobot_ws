@@ -61,7 +61,8 @@ def generate_launch_description():
     use_gazebo = LaunchConfiguration('use_gazebo')
     use_robot_state_pub = LaunchConfiguration('use_robot_state_pub')
     use_sim_time = LaunchConfiguration('use_sim_time')
-    world_file = LaunchConfiguration('world_file')
+    world_file = '/home/domenico/mycobot_ws/src/mycobot_gazebo/worlds/pick_and_place.world'
+    # world_file = LaunchConfiguration('world_file')
 
     world_path = PathJoinSubstitution([
         pkg_share_gazebo,
