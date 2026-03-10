@@ -18,7 +18,6 @@ Simulation allows testing algorithms without hardware, with visualization suppor
 
 ## Features ✨
 - ROS 2 control of myCobot
-- Forward and inverse kinematics
 - Object and color recognition with OpenCV
 - Neural network-based object classification
 - Motion planning and manipulation of multiple objects
@@ -30,13 +29,9 @@ Simulation allows testing algorithms without hardware, with visualization suppor
 
 ## TODO / Work in Progress 📋
 
-- [ ] Forward kinematics implementation
-- [ ] Inverse kinematics implementation
+- [ ] Pick and place demo with RViz
 - [ ] OpenCV color detection
 - [ ] Neural network object recognition
-- [ ] Pick and place demo with RViz
-- [ ] Integration testing of all modules
-- [ ] Documentation and examples
 
 ---
 
