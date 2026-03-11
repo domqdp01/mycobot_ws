@@ -37,56 +37,43 @@
       <uri>model://ground_plane</uri>
     </include>
 
-    <!-- Underbin bench -->
-    <include>
-      <uri>model://underbin_bench</uri>
-      <pose>0 0.7 0.05 0 0 1.5708</pose>
-      <static>1</static>
-    </include>
-
     <!-- Bins -->
     <include>
       <uri>model://bin_red</uri>
-      <pose>-0.27 0.65 0.11 0 0 0</pose>
+      <pose>-0.15 0.40 0 0 0 0</pose>
       <static>1</static>
       
     </include>
 
     <include>
-      <uri>model://bin_green</uri>
-      <pose>0 0.65 0.1 0 0 0</pose>
-      <static>1</static>
-    </include>
-
-    <include>
       <uri>model://bin_blue</uri>
-      <pose>0.27 0.65 0.11 0 0 0</pose>
+      <pose>0.15 0.40 0.0 0 0 0</pose>
       <static>1</static>
     </include>
 
     <!-- Blocks -->
     <include>
       <uri>model://block_red</uri>
-      <pose>-0.35 0.2 0.015 0 0 0</pose>
+      <pose>0.35 0 0.015 0 0 0</pose>
       <name>block_red_1</name>
     </include>
 
     <include>
       <uri>model://block_red</uri>
-      <pose>0.25 0.4 0.015 0 0 0</pose>
+      <pose>0.25 0.16 0.015 0 0 0</pose>
       <name>block_red_2</name>
     </include>
 
     <include>
       <uri>model://block_blue</uri>
-      <pose>0.1 0.42 0.015 0 0 0</pose>
+      <pose>0.1 0.18 0.015 0 0 0</pose>
       <name>block_blue_1</name>
     </include>
 
     <include>
-      <uri>model://block_green</uri>
-      <pose>0.27 0.15 0.015 0 0 0</pose>
-      <name>block_green_1</name>
+      <uri>model://block_blue</uri>
+      <pose>0.27 -0.05 0.015 0 0 0</pose>
+      <name>block_blue_2</name>
     </include>
 
   </world>
