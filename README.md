@@ -29,7 +29,8 @@ Simulation allows testing algorithms without hardware, with visualization suppor
 
 ## TODO / Work in Progress 📋
 
-- [ ] Pick and place demo with RViz
+- [X] Pick and place demo with simple Action/Client pipeline
+- [ ] Pick and place demo with Moveit
 - [ ] OpenCV color detection
 - [ ] Neural network object recognition
 

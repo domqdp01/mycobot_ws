@@ -17,7 +17,7 @@ find_package(rviz_visual_tools REQUIRED)
 
 # Copy necessary files to designated locations in the project
 install (
-  DIRECTORY config launch rviz
+  DIRECTORY config launch rviz src
   DESTINATION share/${PROJECT_NAME}
 )
 
@@ -25,6 +25,11 @@ install (
 install(
   FILES .setup_assistant
   DESTINATION share/${PROJECT_NAME}
+)
+
+install(PROGRAMS
+  src/pick_and_place_actionclient.py
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 
