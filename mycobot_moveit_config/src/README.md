@@ -22,5 +22,5 @@ This approach allows precise control of both the arm and the gripper using ROS2 
 ## Demo
 
 <p align="center">
-  <img src="demos/pick_and_place_action.gif" width="700"/>
+  <img src="demos/pick_and_place_service_action.git" width="700"/>
 </p>
