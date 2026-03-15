@@ -16,7 +16,11 @@ It works as follows:
   5. Open the gripper to release the cube.
   6. Return the arm to the **home position**.
 
- 
-Once the sequence is completed, the node **automatically shuts down**.
 
 This approach allows precise control of both the arm and the gripper using ROS2 Actions without blocking the main execution thread.
+
+## Demo
+
+<p align="center">
+  <img src="demos/pick_and_place_action.gif" width="700"/>
+</p>

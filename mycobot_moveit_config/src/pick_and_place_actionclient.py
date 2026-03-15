@@ -46,8 +46,9 @@ class PickAndPlace(Node):
         self.red_bin_pose = [0.636, -1.468, -0.195, 1.127, -0.283, 0.874]
         self.middle_pose = [-0.775, -0.497, -0.018, -0.006, -0.05, -0.874]
         self.home_pos = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-
-
+        self.blue_cube_pose = [-0.230, -0.699, -1.772, 0.850, 0.006, 1.324]
+        self.middle_blue_pose = [-1.506, -0.931, -0.468, 0.0, 0.0, 0.0]
+        self.blue_bin_pose = [-0.157, -1.367, -0.006, 0.485, 0.0, 0.0]
 
 
         # Create timer that triggers the control loop quickly after start (0.1 seconds)
@@ -89,53 +90,63 @@ class PickAndPlace(Node):
 
     def control_loop_callback(self) -> None:
         """
-        Execute pick and place.
+        Execute a pick-and-place routine.
 
         This method performs the following sequence:
-        1. Move arm to the red box
-        2. Pause at it
-        3. Close gripper
-        4. Move to a intermidiate position
-        5. Move arm to the red bin
-        6. Pause at it
-        7. Open gripper
-        8. Move arm beck to home position
+        1. Move the arm to the red cube, pause there and close the gripper
+        2. Move the arm to the red bin through an intermediate position, then open the gripper
+        3. Move the arm back to the home position
+        4. Move the arm to the blue cube through a middle position, then close the gripper
+        5. Move the arm to the blue bin through an intermediate position, then open the gripper
+        6. Move the arm back to the home position
         """
+
         # 1
         self.get_logger().info('Reaching the red cube')
         self.send_arm_command(self.red_cube_pose)
-        time.sleep(2.5)  # Wait for arm to reach target (2.5s)
-
-        # 2
-        time.sleep(1.0)
-
-        # 3
+        time.sleep(4.5)  # Wait for arm to reach target (2.5s)
         self.get_logger().info('Closing the gripper')
         self.send_gripper_command(-0.6)
-        time.sleep(1.5)
-
-        # 4
-        self.get_logger().info('Moving to an intermidiate position')
-        self.send_arm_command(self.middle_pose)
         time.sleep(2.5)
 
-        #5
+        # 2
+        self.get_logger().info('Passing trough an intermidiate position')
+        self.send_arm_command(self.middle_pose)
+        time.sleep(3.5)
         self.get_logger().info('Reaching the red bin')
         self.send_arm_command(self.red_bin_pose)
-        time.sleep(2.5)
-
-        # 6
-        time.sleep(1.0)
-
-        # 7
+        time.sleep(5.5)
         self.get_logger().info('Opening the gripper')
         self.send_gripper_command(0.0)
-        time.sleep(1.5)
+        time.sleep(2.5)
 
-        # 8 
+        # 3 
         self.get_logger().info('Back to home position!')
         self.send_arm_command(self.home_pos)
-        time.sleep(2.5)
+        time.sleep(4.5)
+
+        # 4 
+        self.get_logger().info("Reaching the blue cube")
+        self.send_arm_command(self.middle_blue_pose)
+        time.sleep(3.5)
+        self.send_arm_command(self.blue_cube_pose)
+        time.sleep(5)
+        self.send_gripper_command(-0.6)
+        time.sleep(3.5)
+
+        # 5 
+        self.get_logger().info("Reaching the blue bin")
+        self.send_arm_command(self.middle_pose)
+        time.sleep(4.0)
+        self.send_arm_command(self.blue_bin_pose)
+        time.sleep(4.5)
+        self.send_gripper_command(0.0)
+        time.sleep(3.0)
+
+        # 6
+        self.get_logger().info('Back to home position!')
+        self.send_arm_command(self.home_pos)
+        time.sleep(3.5)
 
         # Final pause 
         time.sleep(1.0)
@@ -146,12 +157,7 @@ class PickAndPlace(Node):
         
 
 def main(args=None):
-    """
-    Initialize and run the arm gripper control node.
 
-    Args:
-        args: Command-line arguments (default: None)
-    """
     rclpy.init(args=args)
     pick_and_place = PickAndPlace()
 

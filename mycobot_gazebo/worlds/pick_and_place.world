@@ -52,16 +52,16 @@
     </include>
 
     <!-- Blocks -->
-    <include>
+    <!-- <include>
       <uri>model://block_red</uri>
       <pose>0.35 0 0.015 0 0 0</pose>
-      <name>block_red_1</name>
-    </include>
+      <name>block_red_2</name>
+    </include> -->
 
     <include>
       <uri>model://block_red</uri>
       <pose>0.25 0.16 0.015 0 0 0</pose>
-      <name>block_red_2</name>
+      <name>block_red_1</name>
     </include>
 
     <include>
@@ -70,11 +70,11 @@
       <name>block_blue_1</name>
     </include>
 
-    <include>
+    <!-- <include>
       <uri>model://block_blue</uri>
       <pose>0.27 -0.05 0.015 0 0 0</pose>
       <name>block_blue_2</name>
-    </include>
+    </include> -->
 
   </world>
 </sdf>
