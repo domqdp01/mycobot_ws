@@ -19,8 +19,4 @@ It works as follows:
 
 This approach allows precise control of both the arm and the gripper using ROS2 Actions without blocking the main execution thread.
 
-## Demo
-
-<p align="center">
-  <img src="demos/pick_and_place_service_action.git" width="700"/>
-</p>
+![Pick and Place Demo](demos/pick_and_place_service_action.gif)
