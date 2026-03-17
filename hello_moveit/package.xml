@@ -2,16 +2,22 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>hello_moveit</name>
-  <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="domenico.quartodipalo@mail.polimi.it">domenico</maintainer>
-  <license>TODO: License declaration</license>
+  <version>0.0.1</version>
+  <description>Pick and Place demo using MoveIt2 and ROS2</description>
+  <maintainer email="domenico.quartodipalo@mail.polimi.it">Domenico Quartodipalo</maintainer>
+  <license>Apache-2.0</license>
 
+  <!-- Build tool -->
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <depend>moveit_ros_planning_interface</depend>
+  <!-- Runtime dependencies -->
   <depend>rclcpp</depend>
+  <depend>geometry_msgs</depend>
+  <depend>moveit_ros_planning_interface</depend>
+  <depend>moveit_visual_tools</depend>
+  <depend>tf2_ros</depend>
 
+  <!-- Testing / linting -->
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 
