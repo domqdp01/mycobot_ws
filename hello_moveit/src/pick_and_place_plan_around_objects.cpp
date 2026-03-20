@@ -69,7 +69,7 @@ int main(int argc, char * argv[])
 
     shape_msgs::msg::SolidPrimitive bin_shape;
     bin_shape.type = bin_shape.BOX;
-    bin_shape.dimensions = {0.5, 0.05, 0.10};
+    bin_shape.dimensions = {0.55, 0.05, 0.10};
 
     geometry_msgs::msg::Pose bin_pose;
     bin_pose.position.x = 0.0;   
@@ -97,13 +97,13 @@ int main(int argc, char * argv[])
        geometry_msgs::msg::PoseStamped target;
         target.header.frame_id = "world";
         target.header.stamp = node->now();
-        target.pose.position.x = 0.241;
-        target.pose.position.y = 0.160;
+        target.pose.position.x = 0.239;
+        target.pose.position.y = 0.162;
         target.pose.position.z = 0.051;
-        target.pose.orientation.x = -0.741;
-        target.pose.orientation.y = -0.046;
-        target.pose.orientation.z = -0.044;
-        target.pose.orientation.w = 0.668; 
+        target.pose.orientation.x = -0.531;
+        target.pose.orientation.y = 0.394;
+        target.pose.orientation.z = -0.527;
+        target.pose.orientation.w = 0.535; 
         return target;
     }();
     
@@ -119,30 +119,55 @@ int main(int argc, char * argv[])
     {
         RCLCPP_INFO(logger, "Planning ok! Execution...");
         arm_group_interface.execute(plan);
+        RCLCPP_INFO(logger, "Plan executed. Now closign the gripper!!!");
         rclcpp::sleep_for(std::chrono::seconds(3));
+
+        arm_group_interface.attachObject("red_cube", "link6_flange",
+        {"gripper_left1", "gripper_left2", "gripper_left3",
+        "gripper_right1", "gripper_right2", "gripper_right3"});
+
+        rclcpp::sleep_for(std::chrono::seconds(2));
 
         RCLCPP_INFO(logger, "CLosing the gripper");
         gripper_group_interface.setNamedTarget("closed");
         gripper_group_interface.move();
         rclcpp::sleep_for(std::chrono::milliseconds(500));
 
-        RCLCPP_INFO(logger, "Attach red_cube to the gripper...");
-        arm_group_interface.attachObject("red_cube", "link6_flange",
-        {"gripper_left3", "gripper_right3"});
+        // Place into the red bin
+        geometry_msgs::msg::PoseStamped red_bin_target;
+        red_bin_target.header.frame_id = "world";
+        red_bin_target.header.stamp = node->now();
+        red_bin_target.pose.position.x = -0.117;
+        red_bin_target.pose.position.y = 0.297;
+        red_bin_target.pose.position.z = 0.157;
+        red_bin_target.pose.orientation.x = -0.283;
+        red_bin_target.pose.orientation.y = 0.296;
+        red_bin_target.pose.orientation.z = 0.052;
+        red_bin_target.pose.orientation.w = 0.911; 
+
+        arm_group_interface.setPoseTarget(red_bin_target);
+        moveit::planning_interface::MoveGroupInterface::Plan plan_2;
+
+        if (arm_group_interface.plan(plan_2) == moveit::core::MoveItErrorCode::SUCCESS)
+        {
+            RCLCPP_INFO(logger, "Going to the red bin");
+            arm_group_interface.execute(plan_2);
+            rclcpp::sleep_for(std::chrono::seconds(3));
+
+            arm_group_interface.detachObject("red_cube");
+            rclcpp::sleep_for(std::chrono::milliseconds(500));
+
+            planning_scene_interface.removeCollisionObjects({"red_cube"});
+            rclcpp::sleep_for(std::chrono::milliseconds(300));
+
+            gripper_group_interface.setNamedTarget("open");
+            gripper_group_interface.move();
+        }
     }
     else
     {
         RCLCPP_ERROR(logger, "planning failed!!!");
     }
-
-    // RCLCPP_INFO(logger, "CLosing the gripper");
-    // gripper_group_interface.setNamedTarget("closed");
-    // gripper_group_interface.move();
-    // rclcpp::sleep_for(std::chrono::seconds(3));
-
-    // RCLCPP_INFO(logger, "Attach red_cube to the gripper...");
-    // arm_group_interface.attachObject("red_cube", "link6_flange",
-    // {"gripper_left3", "gripper_right3"});
 
 
     rclcpp::shutdown();
