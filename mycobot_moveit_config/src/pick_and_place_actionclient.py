@@ -101,29 +101,29 @@ class PickAndPlace(Node):
         6. Move the arm back to the home position
         """
 
-        # 1
-        self.get_logger().info('Reaching the red cube')
-        self.send_arm_command(self.red_cube_pose)
-        time.sleep(4.5)  # Wait for arm to reach target (2.5s)
-        self.get_logger().info('Closing the gripper')
-        self.send_gripper_command(-0.6)
-        time.sleep(2.5)
+        # # 1
+        # self.get_logger().info('Reaching the red cube')
+        # self.send_arm_command(self.red_cube_pose)
+        # time.sleep(4.5)  # Wait for arm to reach target (2.5s)
+        # self.get_logger().info('Closing the gripper')
+        # self.send_gripper_command(-0.6)
+        # time.sleep(2.5)
 
-        # 2
-        self.get_logger().info('Passing trough an intermidiate position')
-        self.send_arm_command(self.middle_pose)
-        time.sleep(3.5)
-        self.get_logger().info('Reaching the red bin')
-        self.send_arm_command(self.red_bin_pose)
-        time.sleep(5.5)
-        self.get_logger().info('Opening the gripper')
-        self.send_gripper_command(0.0)
-        time.sleep(2.5)
+        # # 2
+        # self.get_logger().info('Passing trough an intermidiate position')
+        # self.send_arm_command(self.middle_pose)
+        # time.sleep(3.5)
+        # self.get_logger().info('Reaching the red bin')
+        # self.send_arm_command(self.red_bin_pose)
+        # time.sleep(5.5)
+        # self.get_logger().info('Opening the gripper')
+        # self.send_gripper_command(0.0)
+        # time.sleep(2.5)
 
-        # 3 
-        self.get_logger().info('Back to home position!')
-        self.send_arm_command(self.home_pos)
-        time.sleep(4.5)
+        # # 3 
+        # self.get_logger().info('Back to home position!')
+        # self.send_arm_command(self.home_pos)
+        # time.sleep(4.5)
 
         # 4 
         self.get_logger().info("Reaching the blue cube")
@@ -135,18 +135,18 @@ class PickAndPlace(Node):
         time.sleep(3.5)
 
         # 5 
-        self.get_logger().info("Reaching the blue bin")
-        self.send_arm_command(self.middle_pose)
-        time.sleep(4.0)
-        self.send_arm_command(self.blue_bin_pose)
-        time.sleep(4.5)
-        self.send_gripper_command(0.0)
-        time.sleep(3.0)
+        # self.get_logger().info("Reaching the blue bin")
+        # self.send_arm_command(self.middle_pose)
+        # time.sleep(4.0)
+        # self.send_arm_command(self.blue_bin_pose)
+        # time.sleep(4.5)
+        # self.send_gripper_command(0.0)
+        # time.sleep(3.0)
 
-        # 6
-        self.get_logger().info('Back to home position!')
-        self.send_arm_command(self.home_pos)
-        time.sleep(3.5)
+        # # 6
+        # self.get_logger().info('Back to home position!')
+        # self.send_arm_command(self.home_pos)
+        # time.sleep(3.5)
 
         # Final pause 
         time.sleep(1.0)
