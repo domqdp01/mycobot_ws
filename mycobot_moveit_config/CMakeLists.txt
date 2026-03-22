@@ -7,6 +7,7 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(yaml-cpp REQUIRED)
 find_package(moveit_ros_planning_interface REQUIRED)
 find_package(moveit_ros_move_group REQUIRED)
 find_package(moveit_kinematics REQUIRED)
@@ -14,6 +15,14 @@ find_package(moveit_planners_ompl REQUIRED)
 find_package(moveit_ros_visualization REQUIRED)
 find_package(rviz2 REQUIRED)
 find_package(rviz_visual_tools REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(tf2_ros REQUIRED)
+find_package(control_msgs REQUIRED)
+find_package(rclcpp_action REQUIRED)
+find_package(moveit_visual_tools REQUIRED)
+
+
 
 # Copy necessary files to designated locations in the project
 install (
@@ -31,7 +40,42 @@ install(PROGRAMS
   src/pick_and_place_actionclient.py
   DESTINATION lib/${PROJECT_NAME}
 )
+add_executable(hello_moveit src/hello_moveit.cpp)
+add_executable(pick_and_place_plan_around_objects src/pick_and_place_plan_around_objects.cpp)
 
+target_include_directories(hello_moveit PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include/${PROJECT_NAME}>)
+target_compile_features(hello_moveit PUBLIC c_std_99 cxx_std_17)
+
+target_include_directories(pick_and_place_plan_around_objects PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include/${PROJECT_NAME}>)
+target_compile_features(pick_and_place_plan_around_objects PUBLIC c_std_99 cxx_std_17)
+
+# link dependencies
+ament_target_dependencies(
+  hello_moveit
+  rclcpp
+  geometry_msgs
+  moveit_ros_planning_interface
+  moveit_visual_tools
+  tf2_ros
+)
+
+ament_target_dependencies(
+  pick_and_place_plan_around_objects
+  rclcpp
+  geometry_msgs
+  moveit_ros_planning_interface
+  moveit_visual_tools
+  tf2_ros
+  control_msgs
+  rclcpp_action
+)
+# install
+install(TARGETS hello_moveit pick_and_place_plan_around_objects
+  DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
