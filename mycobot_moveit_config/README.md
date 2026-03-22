@@ -21,7 +21,7 @@ It works as follows:
 
 This approach allows precise control of both the arm and the gripper using ROS2 Actions without blocking the main execution thread.
 
-![Pick and Place Demo](demos/pick_and_place_service_action.gif)
+![Pick and Place Demo](src/demos/pick_and_place_service_action.gif)
 
 ## Pick and Place: Plan Around Objects
 
@@ -57,10 +57,10 @@ It works as follows:
   5. **Detach** and remove the blue cube from the planning scene, then open the gripper.
 
   **Return home:**
-  6. Plan and move the arm back to the **home position**.
+  Plan and move the arm back to the **home position**.
 
 > **Note:** Using `attachObject()` and `detachObject()` tells MoveIt2 that the cube moves rigidly 
 > with the gripper, preventing false collision detections during transport. If planning fails at any 
 > step, the node logs an error and shuts down gracefully.
 
-![Pick and Place Plan Around Objects Demo](demos/Pick_and_place_plan_around_objects.gif)
+![Pick and Place Plan Around Objects Demo](src/demos/Pick_and_place_plan_around_objects.gif)
