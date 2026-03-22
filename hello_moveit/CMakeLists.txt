@@ -12,6 +12,8 @@ find_package(geometry_msgs REQUIRED)
 find_package(moveit_ros_planning_interface REQUIRED)
 find_package(moveit_visual_tools REQUIRED)
 find_package(tf2_ros REQUIRED)
+find_package(control_msgs REQUIRED)
+find_package(rclcpp_action REQUIRED)
 
 # include directories
 include_directories(
@@ -49,6 +51,8 @@ ament_target_dependencies(
   moveit_ros_planning_interface
   moveit_visual_tools
   tf2_ros
+  control_msgs
+  rclcpp_action
 )
 # install
 install(TARGETS hello_moveit pick_and_place_plan_around_objects

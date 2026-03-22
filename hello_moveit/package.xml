@@ -16,6 +16,8 @@
   <depend>moveit_ros_planning_interface</depend>
   <depend>moveit_visual_tools</depend>
   <depend>tf2_ros</depend>
+  <depend>control_msgs</depend>
+  <depend>rclcpp_action</depend>
 
   <!-- Testing / linting -->
   <test_depend>ament_lint_auto</test_depend>
