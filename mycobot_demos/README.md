@@ -1,3 +1,3 @@
-# mycobot_moveit_config #
+# mycobot_demos #
 
-MoveIt configuration, launch files, and SRDF files for myCobot robots
+Folder containing several Pick and Place pipelines for myCobot robot
