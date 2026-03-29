@@ -15,3 +15,6 @@ install/
 Thumbs.db
 
 CMakeLists.txt.user
+
+moveit_task_constructor/
+warehouse_ros_mongo/
